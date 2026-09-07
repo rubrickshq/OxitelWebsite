@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="sec page-head ctx-ink" style="padding-bottom:clamp(32px,4vw,48px)">
+  <div class="container">
+    <h1>Let's talk routes.</h1>
+    <p class="lead">Tell us where your traffic needs to go, the volume you expect, and whether you need CLI or NCLI. A member of our team will reply within 24 business hours.</p>
+  </div>
+</section>
+
+<section class="sec ctx-paper">
+  <div class="container contact-grid">
+    <div class="contact-card">
+      <form class="form" id="contact-form" method="POST" action="{{ site.form_action }}" novalidate data-contact-form data-endpoint="{{ site.form_ajax }}" data-noc="{{ site.noc_email }}" data-sales="{{ site.sales_email }}">
+        <input type="hidden" name="_subject" value="New enquiry from oxitel.net">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="{{ site.url }}/contact/?sent=1">
+        <div class="hp" aria-hidden="true"><label>Leave this field empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="f-name">Full name</label>
+            <input class="input" id="f-name" name="name" type="text" autocomplete="name" required>
+            <span class="error" id="f-name-err">Enter your name.</span>
+          </div>
+          <div class="field">
+            <label for="f-company">Company</label>
+            <input class="input" id="f-company" name="company" type="text" autocomplete="organization" required>
+            <span class="error" id="f-company-err">Enter your company name.</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="f-email">Work email</label>
+            <input class="input" id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+            <span class="error" id="f-email-err">Enter a valid email address, like you@company.com.</span>
+          </div>
+          <div class="field">
+            <label for="f-country">Country</label>
+            <input class="input" id="f-country" name="country" type="text" autocomplete="country-name" required>
+            <span class="error" id="f-country-err">Enter your country.</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-interest">I'm interested in</label>
+          <select class="select" id="f-interest" name="interest" required>
+            <option value="" disabled selected>Choose one</option>
+            <option value="wholesale">Wholesale voice</option>
+            <option value="retail">Retail voice</option>
+            <option value="cli">Premium CLI routes</option>
+            <option value="did">DID / virtual numbers</option>
+            <option value="partnership">Partnership</option>
+            <option value="other">Something else</option>
+          </select>
+          <span class="error" id="f-interest-err">Choose what you're interested in.</span>
+        </div>
+        <div class="field">
+          <label for="f-message">Message <span class="opt">— destinations, expected volume, CLI or NCLI</span></label>
+          <textarea class="textarea" id="f-message" name="message" required></textarea>
+          <span class="error" id="f-message-err">Tell us a little about your traffic.</span>
+        </div>
+        <div class="form-status" role="status" aria-live="polite" data-form-status></div>
+        <div class="form-foot">
+          <button class="btn btn-primary" type="submit" data-submit>Send message</button>
+          <span class="consent">By sending this form you agree to our <a href="/privacy/">privacy policy</a>.</span>
+        </div>
+      </form>
+    </div>
+
+    <aside aria-label="Direct contact">
+      <ul class="contact-list">
+        <li>
+          <span class="icon-chip" aria-hidden="true"><svg><use href="#i-mail"/></svg></span>
+          <div><strong>Sales</strong><a href="mailto:{{ site.sales_email }}">{{ site.sales_email }}</a></div>
+        </li>
+        <li>
+          <span class="icon-chip" aria-hidden="true"><svg><use href="#i-noc"/></svg></span>
+          <div><strong>NOC, 24/7</strong><a href="mailto:{{ site.noc_email }}">{{ site.noc_email }}</a></div>
+        </li>
+        <li>
+          <span class="icon-chip" aria-hidden="true"><svg><use href="#i-phone"/></svg></span>
+          <div><strong>Phone</strong><a href="tel:{{ site.phone_tel }}">{{ site.phone }}</a></div>
+        </li>
+        <li>
+          <span class="icon-chip" aria-hidden="true"><svg><use href="#i-pin"/></svg></span>
+          <div><strong>Office</strong>{{ site.address }}</div>
+        </li>
+      </ul>
+      <p class="text-2 mt-8" style="font-size:var(--fs-small)">Sales: Monday to Friday, 09:00–18:00 {{ site.tz }}. NOC: around the clock, every day.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="sec ctx-white" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="sec-head"><h2 id="faq-title">Questions we get asked</h2></div>
+    <div class="faq" data-faq>
+      {% for q in faq %}
+      <div class="faq-item">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-{{ loop.index }}">{{ q.q }}<svg aria-hidden="true" fill="none" stroke-width="1.75" stroke-linecap="round"><use href="#i-plus"/></svg></button></h3>
+        <div class="faq-a" id="faq-{{ loop.index }}"><div><p>{{ q.a }}</p></div></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

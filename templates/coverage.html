@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="sec page-head ctx-ink">
+  <div class="container">
+    <h1>Direct where it matters. Connected everywhere else.</h1>
+    <p class="lead">Our network is built around direct terminations in Africa, extended worldwide through carrier interconnects. Solid means direct. Dashed means partner.</p>
+    <div class="route-rule is-short" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="sec ctx-paper" aria-labelledby="direct-title">
+  <div class="container">
+    <div class="sec-head">
+      <h2 id="direct-title">Direct terminations</h2>
+      <p class="lead">Five markets where the route is ours: our interconnect, our quality control, our rates.</p>
+    </div>
+    <div class="grid grid-3">
+      {% for r in direct_routes %}
+      <div class="card">
+        <span class="ln" aria-hidden="true" style="margin-bottom:var(--space-4)"></span>
+        <h3>{{ r.country }}</h3>
+        <p>{{ r.detail }}</p>
+        <p class="tnum" style="margin-top:var(--space-3)"><strong>CLI</strong> {{ 'Yes' if r.cli else '—' }} &nbsp;&nbsp; <strong>NCLI</strong> {{ 'Yes' if r.ncli else '—' }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec ctx-ink" aria-labelledby="table-title">
+  <div class="container">
+    <div class="sec-head">
+      <h2 id="table-title">Route table</h2>
+      <p class="lead">The A-Z sheet, minus the rates. Filter by region. Don't see your destination? Our full sheet is broader than this page — ask and we'll send it.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter routes by region" data-filters>
+      <button class="filter" type="button" aria-pressed="true" data-filter="all">All regions</button>
+      {% for reg in regions %}<button class="filter" type="button" aria-pressed="false" data-filter="{{ reg.key }}">{{ reg.name }}</button>{% endfor %}
+    </div>
+    <div class="table-wrap">
+      <table class="route-table tnum" data-route-table>
+        <thead>
+          <tr><th scope="col">Destination</th><th scope="col">Region</th><th scope="col">Route</th><th scope="col">CLI</th><th scope="col">NCLI</th></tr>
+        </thead>
+        <tbody>
+          {% for r in all_routes %}
+          <tr data-region="{{ r.region }}">
+            <td>{{ r.country }}</td>
+            <td class="text-2">{{ r.region_name }}</td>
+            <td><span class="r"><span class="ln{{ '' if r.direct else ' is-partner' }}" aria-hidden="true"></span>{{ 'Direct' if r.direct else 'Partner' }}</span></td>
+            <td>{{ 'Yes' if r.cli else '—' }}</td>
+            <td>{{ 'Yes' if r.ncli else '—' }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="table-empty" data-table-empty hidden>No routes listed for this region yet. Ask us — the full A-Z sheet is broader than this page.</p>
+    </div>
+    <div class="legend">
+      <span><span class="ln" aria-hidden="true"></span>Direct route, Oxitel termination</span>
+      <span><span class="ln is-partner" aria-hidden="true"></span>Partner route, tested continuously</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec ctx-white" aria-labelledby="regions-title">
+  <div class="container">
+    <div class="sec-head"><h2 id="regions-title">Regions we serve</h2></div>
+    <ul class="regions">
+      <li><strong>Africa</strong><span>Direct routes into our core markets plus interconnects across the continent.</span></li>
+      <li><strong>Middle East</strong><span>Wholesale and CLI routes into GCC and wider regional destinations.</span></li>
+      <li><strong>South East Asia</strong><span>Termination across major regional operators.</span></li>
+      <li><strong>Australia</strong><span>Reliable routes for both wholesale and retail traffic.</span></li>
+      <li><strong>Latin America</strong><span>Growing coverage across LATAM destinations.</span></li>
+      <li><strong>CIS region</strong><span>Routes across Russia, Central Asia and the Caucasus.</span></li>
+      <li><strong>Europe</strong><span>Interconnects with European carriers and operators.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec ctx-paper" aria-labelledby="tech-title">
+  <div class="container grid grid-split">
+    <div>
+      <h2 id="tech-title">Built for SIP</h2>
+      <p class="lead mt-4">One protocol, one interconnect. Simple to set up, easy to troubleshoot.</p>
+    </div>
+    <dl class="spec">
+      <dt>Protocol</dt><dd>SIP</dd>
+      <dt>Codecs</dt><dd>G.711 (A-law / µ-law), G.729</dd>
+      <dt>Interconnect</dt><dd>IP-to-IP, IP-whitelisted</dd>
+      <dt>Monitoring</dt><dd>24/7 NOC with real-time route quality monitoring (ASR, ACD, PDD)</dd>
+      <dt>Billing</dt><dd>Prepaid by default; postpaid after an established trading history</dd>
+      <dt>Reporting</dt><dd>CDRs available on request</dd>
+    </dl>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="sec hero ctx-ink">
+  <div class="container">
+    <div class="hero-copy">
+      <h1><span class="line">Direct routes.</span> <span class="line">Clear pricing.</span> <span class="line">Calls that connect.</span></h1>
+      <p class="lead">Oxitel is a wholesale voice carrier delivering A-Z termination, Premium CLI routes and virtual numbers to carriers, VoIP providers and call centres — over SIP, with a 24/7 NOC behind every route.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/contact/">Contact us</a>
+        <a class="link" href="/coverage/">See our coverage</a>
+      </div>
+    </div>
+    <div class="hero-route" aria-hidden="true">
+      <div class="track"></div>
+      <div class="pulse"></div>
+    </div>
+    <ul class="trust" aria-label="What Oxitel offers">
+      <li class="trust-item"><strong>Direct routes into Africa</strong>Nigeria, Zambia, Zimbabwe, South Africa, Tanzania</li>
+      <li class="trust-item"><strong>SIP interconnect</strong>IP-to-IP, live in 24–48 hours</li>
+      <li class="trust-item"><strong>24/7 NOC</strong>Engineers, not an auto-reply</li>
+      <li class="trust-item"><strong>A-Z rates on request</strong>Updated weekly, with notice on increases</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec ctx-paper" aria-labelledby="who-title">
+  <div class="container grid grid-split">
+    <div>
+      <h2 id="who-title">A new carrier with an experienced team</h2>
+      <p class="lead mt-4">Oxitel was founded by telecom professionals who have spent years buying, selling and troubleshooting international voice traffic.</p>
+      <p class="mt-4">Our strength is direct termination in key African markets, extended worldwide through carrier interconnects. Every route is tested before it goes live and monitored after.</p>
+      <a class="link mt-4" href="/about/" style="display:inline-block">About Oxitel</a>
+    </div>
+    <ul class="pillars">
+      <li>
+        <span class="icon-chip" aria-hidden="true"><svg><use href="#i-direct"/></svg></span>
+        <div><h3>Direct terminations</h3><p>Our own routes into the markets we specialise in, not just resold capacity.</p></div>
+      </li>
+      <li>
+        <span class="icon-chip" aria-hidden="true"><svg><use href="#i-test"/></svg></span>
+        <div><h3>Continuously tested routes</h3><p>We test suppliers and destinations on an ongoing basis so quality stays consistent.</p></div>
+      </li>
+      <li>
+        <span class="icon-chip" aria-hidden="true"><svg><use href="#i-noc"/></svg></span>
+        <div><h3>24/7 NOC</h3><p>Engineers available around the clock for interconnect issues, route changes and escalations.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec ctx-white" aria-labelledby="svc-title">
+  <div class="container">
+    <div class="sec-head">
+      <h2 id="svc-title">One SIP interconnect. Four ways to move your traffic.</h2>
+      <p class="lead">Whatever your traffic profile — high-volume wholesale, quality-sensitive retail or inbound numbers — you connect once and route everything through Oxitel.</p>
+    </div>
+    <div class="grid grid-4">
+      <a class="card" href="/services/wholesale-voice/">
+        <span class="icon-chip" aria-hidden="true"><svg><use href="#i-route"/></svg></span>
+        <h3>Wholesale voice</h3>
+        <p>High-volume A-Z termination for carriers and aggregators who buy on rate.</p>
+        <span class="link">Learn more</span>
+      </a>
+      <a class="card" href="/services/retail-voice/">
+        <span class="icon-chip" aria-hidden="true"><svg><use href="#i-retail"/></svg></span>
+        <h3>Retail voice</h3>
+        <p>Quality-first routes for VoIP providers, call centres and resellers whose customers notice every dropped call.</p>
+        <span class="link">Learn more</span>
+      </a>
+      <a class="card" href="/services/premium-cli/">
+        <span class="icon-chip" aria-hidden="true"><svg><use href="#i-cli"/></svg></span>
+        <h3>Premium CLI routes</h3>
+        <p>Direct routes where the caller's number is delivered correctly, every time.</p>
+        <span class="link">Learn more</span>
+      </a>
+      <a class="card" href="/services/virtual-numbers/">
+        <span class="icon-chip" aria-hidden="true"><svg><use href="#i-number"/></svg></span>
+        <h3>DID / virtual numbers</h3>
+        <p>Inbound numbers in eight countries and counting, delivered over SIP to your switch.</p>
+        <span class="link">Learn more</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="sec ctx-ink" aria-labelledby="cov-title">
+  <div class="container">
+    <div class="sec-head">
+      <h2 id="cov-title">Direct where it matters. Connected everywhere else.</h2>
+      <p class="lead">Direct terminations in five African markets. Interconnects across the Middle East, South East Asia, Australia, Latin America, the CIS region and Europe.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="route-table tnum">
+        <thead>
+          <tr><th scope="col">Destination</th><th scope="col">Route</th><th scope="col">CLI</th><th scope="col">NCLI</th><th scope="col" class="hide-mobile">Networks</th></tr>
+        </thead>
+        <tbody>
+          {% for r in direct_routes %}
+          <tr>
+            <td>{{ r.country }}</td>
+            <td><span class="r"><span class="ln" aria-hidden="true"></span>Direct</span></td>
+            <td>{{ 'Yes' if r.cli else '—' }}</td>
+            <td>{{ 'Yes' if r.ncli else '—' }}</td>
+            <td class="hide-mobile text-2">{{ r.networks }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span><span class="ln" aria-hidden="true"></span>Direct route, Oxitel termination</span>
+      <span><span class="ln is-partner" aria-hidden="true"></span>Partner route, tested continuously</span>
+    </div>
+    <div class="actions mt-8">
+      <a class="btn btn-secondary" href="/coverage/">See full coverage</a>
+      <a class="link" href="/contact/?interest=wholesale">Request the A-Z sheet</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec ctx-paper" aria-labelledby="why-title">
+  <div class="container">
+    <div class="sec-head">
+      <h2 id="why-title">Four reasons carriers route with us</h2>
+    </div>
+    <div class="features">
+      <div class="feature"><h3>Better pricing</h3><p>Direct routes cut out the middle layers. Our rates reflect that.</p></div>
+      <div class="feature"><h3>Consistent quality</h3><p>Routes are tested continuously and quality is monitored in real time. Weak suppliers get replaced before you have to complain.</p></div>
+      <div class="feature"><h3>Routes others don't have</h3><p>Direct terminations in key African markets that most carriers can only resell.</p></div>
+      <div class="feature"><h3>Support that actually answers</h3><p>A 24/7 NOC with real engineers. Interconnect issues and route changes are handled fast, not queued.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec ctx-white" aria-labelledby="how-title">
+  <div class="container">
+    <div class="sec-head">
+      <h2 id="how-title">From first email to live traffic in three steps</h2>
+    </div>
+    <ol class="steps">
+      <li class="step"><span class="num" aria-hidden="true">1</span><h3>Contact us</h3><p>Send your destinations, expected volume and whether you need CLI or NCLI. Rates back within 24 business hours.</p></li>
+      <li class="step"><span class="num" aria-hidden="true">2</span><h3>Test the route</h3><p>We set up a SIP interconnect and you send test traffic. Judge the quality yourself.</p></li>
+      <li class="step"><span class="num" aria-hidden="true">3</span><h3>Go live</h3><p>Sign, fund the account, start routing. Live within 24–48 hours, monitored 24/7 from day one.</p></li>
+    </ol>
+  </div>
+</section>
+{% endblock %}

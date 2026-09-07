@@ -1,0 +1,11 @@
+{
+  "name": "oxitel-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "oxitel.net — static marketing site for Oxitel, a wholesale voice carrier",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js && npx --yes serve dist"
+  },
+  "engines": { "node": ">=18" }
+}

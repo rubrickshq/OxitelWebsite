@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="sec page-head ctx-ink">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--slate-300)">{{ svc.kicker }}</span>
+    <h1>{{ svc.h1 }}</h1>
+    <p class="lead">{{ svc.lead }}</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/contact/?interest={{ svc.interest }}">{{ svc.cta }}</a>
+      <a class="link" href="/services/">All services</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec ctx-paper" aria-labelledby="who-title">
+  <div class="container grid grid-split">
+    <div>
+      <h2 id="who-title">Who it's for</h2>
+      <p class="lead mt-4">{{ svc.who }}</p>
+    </div>
+    <div>
+      <h3 style="margin-bottom:var(--space-4)">What you get</h3>
+      <ul class="checklist" style="grid-template-columns:1fr">
+        {% for g in svc.gets %}<li>{{ g }}</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% for x in svc.extras %}
+<section class="sec {{ 'ctx-ink' if x.dark else 'ctx-white' }}" aria-labelledby="x{{ loop.index }}-title">
+  <div class="container">
+    <div class="sec-head">
+      <h2 id="x{{ loop.index }}-title">{{ x.title }}</h2>
+      {% if x.body %}<p class="lead">{{ x.body }}</p>{% endif %}
+    </div>
+    {% if x.chips %}
+    <ul class="chips" aria-label="{{ x.title }}">{% for c in x.chips %}<li class="chip{{ ' is-direct' if x.direct }}">{{ c }}</li>{% endfor %}</ul>
+    {% if x.after %}<p class="text-2 mt-6">{{ x.after }}</p>{% endif %}
+    {% endif %}
+    {% if x.list %}
+    <ul class="node-list" style="max-width:640px">{% for i in x.list %}<li>{{ i }}</li>{% endfor %}</ul>
+    {% endif %}
+    {% if x.steps %}
+    <ol class="steps">
+      {% for s in x.steps %}<li class="step"><span class="num" aria-hidden="true">{{ loop.index }}</span><h3>{{ s.t }}</h3><p>{{ s.d }}</p></li>{% endfor %}
+    </ol>
+    {% endif %}
+  </div>
+</section>
+{% endfor %}
+
+{% if svc.commercials or svc.technical %}
+<section class="sec ctx-paper" aria-labelledby="terms-title">
+  <div class="container">
+    <h2 id="terms-title" class="sr-only">Commercials and technical details</h2>
+    <div class="grid grid-2" style="gap:clamp(32px,5vw,64px)">
+      {% if svc.commercials %}
+      <div>
+        <h3 style="margin-bottom:var(--space-6)">Commercials</h3>
+        <dl class="spec">{% for k, v in svc.commercials %}<dt>{{ k }}</dt><dd>{{ v }}</dd>{% endfor %}</dl>
+      </div>
+      {% endif %}
+      {% if svc.technical %}
+      <div>
+        <h3 style="margin-bottom:var(--space-6)">Technical</h3>
+        <dl class="spec">{% for k, v in svc.technical %}<dt>{{ k }}</dt><dd>{{ v }}</dd>{% endfor %}</dl>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if svc.faq %}
+<section class="sec ctx-white" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="sec-head"><h2 id="faq-title">Questions we get asked</h2></div>
+    <div class="faq" data-faq>
+      {% for q in svc.faq %}
+      <div class="faq-item">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-{{ loop.index }}">{{ q.q }}<svg aria-hidden="true" fill="none" stroke-width="1.75" stroke-linecap="round"><use href="#i-plus"/></svg></button></h3>
+        <div class="faq-a" id="faq-{{ loop.index }}"><div><p>{{ q.a }}</p></div></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

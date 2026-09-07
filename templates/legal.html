@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="sec page-head ctx-ink" style="padding-bottom:clamp(32px,4vw,48px)">
+  <div class="container">
+    <h1>{{ page.h1 }}</h1>
+    {% if page.lead %}<p class="lead">{{ page.lead }}</p>{% endif %}
+  </div>
+</section>
+<section class="sec ctx-paper">
+  <div class="container">
+    <div class="prose">
+      {{ body|safe }}
+    </div>
+  </div>
+</section>
+{% endblock %}

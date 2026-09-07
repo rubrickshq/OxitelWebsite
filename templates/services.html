@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="sec page-head ctx-ink">
+  <div class="container">
+    <h1>One SIP interconnect. Four ways to move your traffic.</h1>
+    <p class="lead">Whatever your traffic profile — high-volume wholesale, quality-sensitive retail or inbound numbers — you connect once and route everything through Oxitel.</p>
+    <div class="route-rule is-short" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="sec ctx-paper">
+  <div class="container grid grid-2">
+    <a class="card card-lg" href="/services/wholesale-voice/">
+      <span class="icon-chip" aria-hidden="true"><svg><use href="#i-route"/></svg></span>
+      <h3>Wholesale voice (A-Z)</h3>
+      <p>High-volume international termination for carriers, aggregators and wholesale VoIP providers who buy on rate.</p>
+      <ul class="node-list"><li>Direct and partner routes, A to Z</li><li>Competitive rates updated weekly</li><li>Capacity for sustained volumes</li></ul>
+      <span class="link">Explore wholesale voice</span>
+    </a>
+    <a class="card card-lg" href="/services/retail-voice/">
+      <span class="icon-chip" aria-hidden="true"><svg><use href="#i-retail"/></svg></span>
+      <h3>Retail voice</h3>
+      <p>Quality-first termination for VoIP providers, call centres and resellers.</p>
+      <ul class="node-list"><li>Priority routing on tested routes</li><li>Consistent ASR and ACD</li><li>Proactive rerouting when a route degrades</li></ul>
+      <span class="link">Explore retail voice</span>
+    </a>
+    <a class="card card-lg" href="/services/premium-cli/">
+      <span class="icon-chip" aria-hidden="true"><svg><use href="#i-cli"/></svg></span>
+      <h3>Premium CLI routes</h3>
+      <p>Guaranteed caller-ID delivery on direct terminations. Built for call centres and any traffic where callback matters.</p>
+      <ul class="node-list"><li>CLI preserved end to end</li><li>Direct routes only</li><li>Highest routing priority</li></ul>
+      <span class="link">Explore Premium CLI</span>
+    </a>
+    <a class="card card-lg" href="/services/virtual-numbers/">
+      <span class="icon-chip" aria-hidden="true"><svg><use href="#i-number"/></svg></span>
+      <h3>DID / virtual numbers</h3>
+      <p>Local and international inbound numbers delivered over SIP to your switch or PBX.</p>
+      <ul class="node-list"><li>Multi-country coverage under one account</li><li>Fast provisioning</li><li>Simple monthly pricing</li></ul>
+      <span class="link">Explore virtual numbers</span>
+    </a>
+  </div>
+</section>
+
+<section class="sec ctx-white" aria-labelledby="fit-title">
+  <div class="container">
+    <div class="sec-head"><h2 id="fit-title">Which service fits your traffic?</h2></div>
+    <div class="table-wrap">
+      <table class="compare">
+        <thead><tr><th scope="col">Service</th><th scope="col">Best for</th><th scope="col">Caller ID</th><th scope="col">Routing</th><th scope="col">Pricing</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Wholesale voice</th><td>High-volume, rate-driven traffic</td><td>CLI or NCLI by destination</td><td>Standard priority, direct and partner routes</td><td>Volume-based</td></tr>
+          <tr><th scope="row">Retail voice</th><td>Quality-sensitive outbound traffic</td><td>CLI where available</td><td>Priority routing, proactive rerouting</td><td>Quality-tier</td></tr>
+          <tr><th scope="row">Premium CLI routes</th><td>Traffic where caller ID must show</td><td>Guaranteed CLI</td><td>Direct routes only, highest priority</td><td>Premium</td></tr>
+          <tr><th scope="row">DID / virtual numbers</th><td>Inbound calls and local presence</td><td>Inbound</td><td>SIP delivery to your endpoint</td><td>Monthly per number, plus inbound per minute</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}

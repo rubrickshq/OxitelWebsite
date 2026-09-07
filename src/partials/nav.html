@@ -1,0 +1,33 @@
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <a class="logo" href="/" aria-label="Oxitel home">
+      <span class="logo__node" aria-hidden="true"></span><span class="logo__word">oxitel</span>
+    </a>
+
+    <button type="button" class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navPanel" aria-label="Open menu">
+      <span class="nav__bar"></span><span class="nav__bar"></span>
+    </button>
+
+    <div class="nav__panel" id="navPanel">
+      <ul class="nav__list">
+        <li><a data-nav="/" href="/">Home</a></li>
+        <li><a data-nav="/about" href="/about/">About</a></li>
+        <li class="has-sub">
+          <a data-nav="/services" href="/services/">Services</a>
+          <button type="button" class="sub__toggle" aria-expanded="false" aria-label="Show services">
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+          <ul class="sub">
+            <li><a href="/services/wholesale-voice/">Wholesale voice</a></li>
+            <li><a href="/services/retail-voice/">Retail voice</a></li>
+            <li><a href="/services/premium-cli/">Premium CLI routes</a></li>
+            <li><a href="/services/virtual-numbers/">DID / virtual numbers</a></li>
+          </ul>
+        </li>
+        <li><a data-nav="/coverage" href="/coverage/">Coverage</a></li>
+        <li><a data-nav="/partners" href="/partners/">Partner with us</a></li>
+      </ul>
+      <a class="btn btn--primary nav__cta" href="/contact/">Contact us</a>
+    </div>
+  </div>
+</header>

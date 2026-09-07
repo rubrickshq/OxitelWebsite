@@ -1,0 +1,6 @@
+dist/
+node_modules/
+.vercel/
+src.tgz
+.DS_Store
+shots/
